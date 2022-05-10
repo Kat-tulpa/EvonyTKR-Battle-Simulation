@@ -9,13 +9,6 @@
 class Counts {
 	Count counts[PLAYER_COUNT][TYPE_COUNT][TIER_COUNT] = { 0 };
 
-	void init() {
-		// Init All Troop Counts As Zero
-		for (unsigned int type = 0; type < TYPE_COUNT; type++)
-			for (unsigned int tier = 0; tier < TIER_COUNT; tier++)
-				setAttackerAndDefenderAllTypes(tier, 0);
-	}
-
 	void setAttackerAndDefenderAllTypes(
 		const unsigned int tier, const Count count) {
 		for (unsigned int player = 0; player < PLAYER_COUNT; player++)
