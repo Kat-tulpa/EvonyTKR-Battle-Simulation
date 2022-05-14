@@ -7,10 +7,15 @@
 #include "Count.h"
 
 class Counts {
+private:
 	Count counts[PLAYER_COUNT][TYPE_COUNT][TIER_COUNT] = { 0 };
 
-	void setAttackerAndDefenderAllTypes(
-		const unsigned int tier, const Count count) {
+public:
+
+	// Getters
+
+	// Setters
+	void setAttackerAndDefenderAllTypes(const unsigned int tier, const Count count) {
 		for (unsigned int player = 0; player < PLAYER_COUNT; player++)
 			for (unsigned int type = 0; type < TYPE_COUNT; type++)
 				counts[player][type][tier] = count;
@@ -47,4 +52,5 @@ class Counts {
 	void setDefenderSiege(unsigned int tier, unsigned int count) {
 		counts[PLAYER_DEFENDER][TYPE_SIEGE][tier - 1] = count;
 	}
+
 } counts;
