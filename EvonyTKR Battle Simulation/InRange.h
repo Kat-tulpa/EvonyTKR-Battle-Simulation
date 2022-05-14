@@ -1,6 +1,11 @@
 #pragma once
 #include "Battlefield.h"
 
+class InRange {
+private:
+
+public:
+
 	inline const bool inRangeAttackerDefenderSiege(const Type type,
 		const unsigned int tier) {
 
@@ -31,7 +36,8 @@
 
 	}
 
-	inline const bool Battlefield::inRangeGroundTargetDefender(const Type type,
+	inline const bool inRangeGroundTargetDefender(const Type type,
 		const unsigned int tier) {
 
 	}
+};
