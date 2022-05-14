@@ -74,5 +74,26 @@
     <ClInclude Include="InRange.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementPhase.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackPhase.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DamagePending.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LossesPhase.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DamagePhase.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

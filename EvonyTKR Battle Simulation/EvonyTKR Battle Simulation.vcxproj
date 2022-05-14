@@ -142,10 +142,17 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttackPhase.h" />
     <ClInclude Include="Count.h" />
+    <ClInclude Include="DamagePending.h" />
+    <ClInclude Include="DamagePhase.h" />
     <ClInclude Include="Distance.h" />
     <ClInclude Include="FlatBuffs.h" />
     <ClInclude Include="InRange.h" />
+    <ClInclude Include="Interface.h" />
+    <ClInclude Include="LossesPhase.h" />
+    <ClInclude Include="MovementPhase.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="ScalarBuffs.h" />
     <ClInclude Include="Side.h" />
     <ClInclude Include="Attribute.h" />

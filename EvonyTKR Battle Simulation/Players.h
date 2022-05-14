@@ -1,6 +1,8 @@
 #pragma once
 
 static constexpr unsigned int PLAYER_COUNT = 2;
+static Side attacker;
+static Side defender;
 
 enum Player {
 	PLAYER_ATTACKER,

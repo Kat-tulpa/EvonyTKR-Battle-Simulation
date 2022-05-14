@@ -11,6 +11,7 @@ private:
 public:
 
 	// Getters
+
 	const Attribute get(const ATTRIBUTE attribute) {
 		switch (attribute) {
 		case ATTRIBUTE_ATTACK:
@@ -35,6 +36,7 @@ public:
 	}
 
 	// Setters
+
 	void setAll(Attribute val) {
 		setATK(val);
 		setDEF(val);
