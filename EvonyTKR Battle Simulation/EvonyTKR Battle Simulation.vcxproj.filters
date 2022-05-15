@@ -23,16 +23,10 @@
     <ClInclude Include="InitialStats.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Type.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Attribute.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Buffs.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tier.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Stats.h">
@@ -50,19 +44,7 @@
     <ClInclude Include="Counts.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Side.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Count.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeTier.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Distance.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ScalarBuffs.h">
+    <ClInclude Include="ScalarValues.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="FlatBuffs.h">
@@ -86,13 +68,19 @@
     <ClInclude Include="Position.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="DamagePending.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="LossesPhase.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="DamagePhase.h">
+    <ClInclude Include="Damage.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LossesPending.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Troops.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Defs.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

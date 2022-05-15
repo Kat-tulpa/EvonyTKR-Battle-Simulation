@@ -2,7 +2,6 @@
 
 #include "Distance.h"
 #include "InRange.h"
-#include "Side.h"
 #include "AttackPhase.h"
 #include "MovementPhase.h"
 #include "LossesPhase.h"
