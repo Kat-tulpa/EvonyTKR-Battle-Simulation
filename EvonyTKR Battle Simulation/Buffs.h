@@ -1,47 +1,23 @@
 #pragma once
 
-#include "ScalarBuffs.h"
+#include "ScalarValues.h"
 #include "FlatBuffs.h"
 #include "Players.h"
 
 class Buffs {
 private:
-	ScalarBuffs scalarBuffs;
+	ScalarValues scalarBuffs;
 	FlatBuffs flatBuffs;
 
 public:
 	// Init
-	void init(Player side) {
-		if (isAttacker(side)) {
-			// Attacker Scalar %
-			setScalar(TYPE_MOUNTED, 0.0, 0.0, 0.0);
-			setScalar(TYPE_GROUND, 0.0, 0.0, 0.0);
-			setScalar(TYPE_RANGED, 0.0, 0.0, 0.0);
-			setScalar(TYPE_SIEGE, 0.0, 0.0, 0.0);
-
-			// Attacker Flat +
-			setFlat(TYPE_MOUNTED, 0, 0, 0);
-			setFlat(TYPE_GROUND, 0, 0, 0);
-			setFlat(TYPE_RANGED, 0, 0, 0);
-			setFlat(TYPE_SIEGE, 0, 0, 0);
-		}
-		else {
-			// Defender Scalar %
-			setScalar(TYPE_MOUNTED, 0.0, 0.0, 0.0);
-			setScalar(TYPE_GROUND, 0.0, 0.0, 0.0);
-			setScalar(TYPE_RANGED, 0.0, 0.0, 0.0);
-			setScalar(TYPE_SIEGE, 0.0, 0.0, 0.0);
-
-			// Defender Flat +
-			setFlat(TYPE_MOUNTED, 0, 0, 0);
-			setFlat(TYPE_GROUND, 0, 0, 0);
-			setFlat(TYPE_RANGED, 0, 0, 0);
-			setFlat(TYPE_SIEGE, 0, 0, 0);
-		}
+	void init(ScalarValues buffs, FlatBuffs flats) {
+		scalarBuffs = buffs;
+		flatBuffs = flats;
 	}
 
 	// Getters
-	ScalarBuffs scalar() {
+	ScalarValues scalar() {
 		return scalarBuffs;
 	}
 
@@ -95,4 +71,60 @@ public:
 	void setFlatHP(const Type type, const Attribute hp) {
 		flatBuffs.set(type, ATTRIBUTE_HP, hp);
 	}
+
+	// Flat Buffs
+	void applyFlatBuffs() {
+		for (unsigned int tier = 0; tier < TIER_COUNT; tier++)
+			for (unsigned int type = 0; type < TYPE_COUNT; type++)
+				for (unsigned int attribute = 0; attribute < ATTRIBUTE_COUNT; attribute++) {
+					// Just Some Shorthand Casts
+					const Tier castedTier = Tier(tier); const Type castedType = Type(type);
+					const ATTRIBUTE castedAttribute = ATTRIBUTE(attribute);
+					// Actual Logic
+					const Attribute currentStats = typeTiers[tier][type].get(castedAttribute);
+					const Attribute addedStats = buffs.getFlat(castedType, castedAttribute);
+					typeTiers[tier][type].set(castedAttribute, currentStats + addedStats);
+				}
+	}
+
+	void applyDebuffs(Debuffs debuffs) {
+		for (unsigned int type = 0; type < TYPE_COUNT; type++)
+			for (unsigned int attribute = 0; attribute < ATTRIBUTE_COUNT; attribute++) {
+				// Just Some Shorthand Casts
+				const ATTRIBUTE castedAttribute = ATTRIBUTE(attribute);
+				const Type castedType = Type(type);
+				// Actual Logic
+				const double buff = buffs.getScalar(castedType, castedAttribute);
+				const double debuff = debuffs.get(castedType, castedAttribute);
+				buffs.setScalar(castedType, castedAttribute, std::max(buff / 2.0, buff - debuff));
+			}
+	}
+
+
+	// Apply Buffs & Debuffs
+	void applyBuffs() {
+		applyScalarBuffs();
+		applyFlatBuffs();
+	}
+
+	void calculateBuffS() {
+
+	}
+
+	void applyScalarBuffs() {
+		for (unsigned int tier = 0; tier < TIER_COUNT; tier++)
+			for (unsigned int type = 0; type < TYPE_COUNT; type++)
+				for (unsigned int attribute = 0; attribute < ATTRIBUTE_COUNT; attribute++) {
+					// Just Some Shorthand Casts
+					const Tier castedTier = Tier(tier); const Type castedType = Type(type);
+					const ATTRIBUTE castedAttribute = ATTRIBUTE(attribute);
+					// Actual Logic
+					const Attribute defaultStats =
+						initialStats.get(castedTier, castedType, castedAttribute);
+					const double multiplicationFactor =
+						1.0 + buffs.getScalar(castedType, castedAttribute);
+					typeTiers[tier][type].set(castedAttribute, defaultStats * multiplicationFactor);
+				}
+	}
+
 };
