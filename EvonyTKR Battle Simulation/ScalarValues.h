@@ -3,9 +3,9 @@
 #include "Type.h"
 #include "Attribute.h"
 
-class ScalarBuffs {
+class ScalarValues {
 private:
-	double values[TYPE_COUNT][ATTRIBUTE_COUNT] = { 0.0 };
+	double values[TYPE_COUNT][ATTRIBUTE_COUNT];
 
 public:
 	// Getters
