@@ -1,9 +1,7 @@
 #pragma once
 
 #include "Players.h"
-#include "Type.h"
 #include "Distance.h"
-#include "Tier.h"
 
 class Position {
 private:

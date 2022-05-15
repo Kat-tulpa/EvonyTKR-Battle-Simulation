@@ -1,20 +1,38 @@
 #pragma once
 
-static constexpr unsigned int PLAYER_COUNT = 2;
-static Side attacker;
-static Side defender;
+#include "Buffs.h"
+#include "Debuffs.h"
+#include "Troops.h"
 
-enum Player {
-	PLAYER_ATTACKER,
-	PLAYER_DEFENDER
+static Player attacker;
+static Player defender;
+
+class Player {
+private:
+	Troops TROOPS;
+	Buffs BUFFS;
+	Debuffs DEBUFFS;
+
+public:
+
+	// Getters
+	Buffs& buffs() {
+		return BUFFS;
+	}
+
+	Debuffs& debuffs() {
+		return DEBUFFS;
+	}
+
+
+
+	static const bool isAttacker(PlayerType side) {
+		if (side == PLAYER_ATTACKER)
+			return true;
+		return false;
+	}
+
+	static const bool isDefender(PlayerType side) {
+		return !isAttacker(side);
+	}
 };
-
-static const bool isAttacker(Player side) {
-	if (side == PLAYER_ATTACKER)
-		return true;
-	return false;
-}
-
-static const bool isDefender(Player side) {
-	return !isAttacker(side);
-}

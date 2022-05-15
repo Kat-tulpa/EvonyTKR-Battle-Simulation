@@ -1,32 +1,22 @@
 #pragma once
 
-#include "Count.h"
 #include "Players.h"
-#include "Type.h"
-#include "Tier.h"
 
 class LossesPhase {
 private:
-	static Count lossCounts[PLAYER_COUNT][TYPE_COUNT][TIER_COUNT] = { 0 };
+
 
 public:
 
 	// Core Loss Methods
 	static void phase() {
-		update();
-		stats.update();
+		lossesPending.update();
+		lossesPending.push();
+		attacker.side.stats.update();
+		defender.side.stats.update();
 	}
 
-	static void update() {
-		for (unsigned int type = 0; type < TYPE_COUNT; type++)
-			for (unsigned int tier = 0; tier < TIER_COUNT; tier++) {
-				const Type castedType = Type(type);
-				transformPendingIntoLosses(PLAYER_ATTACKER, castedType, tier);
-				transformPendingIntoLosses(PLAYER_DEFENDER, castedType, tier);
-			}
-	}
-
-	static void transformPendingIntoLosses(const Player player,
+	static void transformPendingIntoLosses(const PlayerType player,
 		const Type type, const unsigned int tier) {
 		if (isAttacker(player)) {
 			if (attacker.hasTroops(type, tier)) {
@@ -48,4 +38,4 @@ public:
 				Count(0), troopCount - losses));
 		}
 	}
-} losses;
+} lossesPhase;
