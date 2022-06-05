@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InitialStats.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Attribute.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Buffs.h">
@@ -47,16 +47,13 @@
     <ClInclude Include="ScalarValues.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="FlatBuffs.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="SkillBook.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="InRange.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interface.h">
+    <ClInclude Include="UI.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="MovementPhase.h">
@@ -81,6 +78,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Defs.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Targeting.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Target.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

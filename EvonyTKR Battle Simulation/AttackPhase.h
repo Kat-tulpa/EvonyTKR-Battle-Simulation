@@ -1,78 +1,214 @@
 #pragma once
 
-#include "Type.h"
-#include "Players.h"
-#include "Damage.h"
-#include "Tier.h"
-#include "InRange.h"
+#include "Defs.h"
+#include "Target.h"
+
+class Attack {
+private:
+	class Phase {
+	private:
+		class Pending {
+		private:
+		public:
+		};
+
+	public:
+
+	};
+};
 
 class AttackPhase {
 private:
-
+	
 public:
-	void attackPhaseAttackerSiege() {
-		if (!attacker.hasSiege())
-			return;
 
-		const Type targetType = acquireAttackerTargetType(TYPE_SIEGE, tier);
+	void tick() {
+		attackerTick();
+		defenderTick();
+	}
 
-		for (unsigned int tier = 0; tier < TIER_COUNT; tier++) {
-		
+	void attackerTick() {
+		attackerSiegeTick();
+		attackerRangedTick();
+		attackerGroundTick();
+		attackerMountedTick();
+	}
+
+	void defenderTick() {
+		defenderSiegeTick();
+		defenderRangedTick();
+		defenderGrundTick();
+		defenderMountedTick();
+	}
+
+	const bool validTargetAttackerSiegeDefenderSiege(
+		const unsigned int attackerTier, const unsigned int defenderTier) {
+
+
+	}
+
+	// Attacker Siege
+
+	// Get Target
+
+	// Siege
+	const Target getTargetAttackerSiegeDefenderSiegeT12() {
+		// T12 Prioritizes High->Low
+		for (unsigned int defenderTier = TIER_COUNT; defenderTier > T1; defenderTier--)
+			if (validTargetAttackerSiegeDefenderSiege(attackerTier, defenderTier))
+				return { TYPE_SIEGE, defenderTier };
+		return { TYPE_NULL, TNULL };
+	}
+
+	const Target getTargetAttackerSiegeDefenderSiege(const unsigned int attackerTier) {
+		// Loop Through All Defenders Siege Tiers Low->High
+		for (unsigned int defenderTier = T1; defenderTier < TIER_COUNT; defenderTier++)
+			if (validTargetAttackerSiegeDefenderSiege(attackerTier, defenderTier))
+				return { TYPE_SIEGE, defenderTier };
+		return { TYPE_NULL, TNULL };
+	}
+
+	// Ranged
+	const Target getTargetAttackerSiegeDefenderRangedT12() {
+		// T12 Prioritizes High->Low
+		for (unsigned int defenderTier = TIER_COUNT; defenderTier > T1; defenderTier--)
+			if (validTargetAttackerSiegeDefenderRanged(attackerTier))
+				return { TYPE_RANGED, defenderTier };
+		return { TYPE_NULL, TNULL };
+	}
+
+	const Target getTargetAttackerSiegeDefenderRanged(const unsigned int attackerTier) {
+		// Loop Through All Defenders Siege Tiers Low->High
+		for (unsigned int defenderTier = T1; defenderTier < TIER_COUNT; defenderTier++)
+			if (validTargetAttackerSiegeDefenderRanged(attackerTier))
+				return { TYPE_RANGED, defenderTier };
+		return { TYPE_NULL, TNULL };
+	}
+
+	const Target getTargetAttackerSiegeT12() {
+		Target target = getTargetAttackerSiegeDefenderSiegeT12();
+		if (!target.isNull())
+			return target;
+		target = getTargetAttackerSiegeDefenderRangedT12();
+		if (!target.isNull())
+			return target;
+		target = getTargetAttackerSiegeDefenderGroundT12();
+		if (!target.isNull())
+			return target;
+		target = getTargetAttackerSiegeDefenderMountedT12();
+		return target;
+	}
+
+	const Target getTargetAttackerSiege(const unsigned int tier) {
+		Target target = getTargetAttackerSiegeDefenderSiege(tier);
+		if (!target.isNull())
+			return target;
+		target = getTargetAttackerSiegeDefenderRanged(tier);
+		if (!target.isNull())
+			return target;
+		target = getTargetAttackerSiegeDefenderGround(tier);
+		if (!target.isNull())
+			return target;
+		target = getTargetAttackerSiegeDefenderMounted(tier);
+		return target;
+	}
+
+	// Tick
+	void attackerSiegeTick() {
+		Target target;
+		for (unsigned int tier = T1; tier < TIER_COUNT; tier++)
+			if (attacker.hasSiege(tier))
+				if (tier == T12)
+					target = getTargetAttackerSiegeT12();
+				else
+					target = getTargetAttackerSiege();
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	const bool hasValidDefendingSiegeTarget(const Type attackerType, const unsigned int siegeTier) {
+		if (defenderHasSiege())
+			if (!position.hasCrossed(attackerType, siegeTier))
+				if (position.getDistance(attackerType, siegeTier))
+					return position.getDistance(attackerType, siegeTier) 
+					<= attacker.getRange(attackerType);
+	}
+
+	void applyDamageAttackerSiegeAgainstDefendingSiege(
+		const unsigned int attackerTier, const unsigned int defenderTier) {
+
+	}
+
+	const unsigned int getAttackerTier() {
+		return attackerTier;
+	}
+
+	bool trySetAttackerTargetsAll() {
+
+	}
+
+	bool tryResolveAttackerSiegeTarget() {
+		// Try To Set Valid Defending Siege Targets By Priority
+
+		// Siege First ----------------------------------------
+		// T12 Targets Troop Tiers Top->Bottom
+		if (getAttackerTier() == T12)
+			for (unsigned int defenderTier = TIER_COUNT; defenderTier > T1; defenderTier--)
+				if (trySetAttackingSiegeTarget(defenderTier))
+					break;
+
+			if (trySetAttackingSiegeTarget(defender.highestTierSiege()))
+
+		if (hasValidDefendingSiegeTarget())
+			if (getAttackerSiegeTier() == T12)
+				setAttackerSiegeTarget(
+			switch (attackerTier) {
+				// T12 Targets Troop Tiers Top->Down
+			case T12:
+				for (unsigned int defenderTier = TIER_COUNT; defenderTier > T1; defenderTier--)
+					if (defenderHasSiege(defenderTier)) {
+						dealAttackerSiegeDamageToDefenderSiege(defenderTier);
+						break;
+					}
+				break;
+			}
+		// Everything Else Targets Troop Tiers Bottom->Up
+				default:
+					for (unsigned int defenderTier = T1; defenderTier < TIER_COUNT; defenderTier++)
+						if (defenderHasSiege(defenderTier))
+							if (inRange.attackerSiegeToDefenderSiege())
+	}
+
+	void tryPerformAttackingSiegeAgainstDefendingSiege() {
+		for (unsigned int attackerTier = T1; attackerTier < TIER_COUNT; attackerTier++) {
+			setAttackerTier(attackerTier);
+
 		}
 	}
 
-	const Type acquireAttackerTargetType(const unsigned int tier) {
-		return resolveAttackerSiegeTargetPriority(tier);
+	void acquireAttackerGroundTarget() {
+		if ()
 	}
 
-	const Type acquireDefenderTargetType(const unsigned int tier) {
-		return resolveDefenderSiegeTargetPriority(tier);
+	void attackerSiegeTick() {
+		if (defenderHasSiege)
+			performAttackerSiegeAgainstSiege
+
 	}
 
-	const Type resolveAttackerSiegeTargetPriority(const unsigned int tier) {
-		// Siege Prioritizes Other Siege
-		if (defender.hasSiege())
-			if (inRangeOfAttackerSiegeDefenderSiege(tier))
-				return TYPE_SIEGE;
-
-		// Then Ranged
-		if (defender.hasRanged())
-			if (inRangeOfAttackerSiegeDefenderRanged(tier))
-				return TYPE_RANGED;
-
-		// Then Mounted
-		if (defender.hasMounted())
-			if (inRangeOfAttackerSiegeDefenderMounted(tier))
-				return TYPE_MOUNTED;
-
-		// And Lastly Ground
-		if (defender.hasGround())
-			if (inRangeOfAttackerSiegeDefenderGround(tier))
-				return TYPE_GROUND;
+	void attackerGroundTick() {
+		battlefield.
 	}
-
-	const Type resolveDefenderSiegeTargetPriority(const unsigned int tier) {
-		// Siege Prioritizes Other Siege
-		if (attacker.hasSiege())
-			if (inRangeOfDefenderSiegeAttackerSiege(tier))
-				return TYPE_SIEGE;
-
-		// Then Ranged
-		if (attacker.hasRanged())
-			if (inRangeOfDefenderSiegeAttackerRanged(tier))
-				return TYPE_RANGED;
-
-		// Then Mounted
-		if (attacker.hasMounted())
-			if (inRangeOfDefenderSiegeAttackerMounted(tier))
-				return TYPE_MOUNTED;
-
-		// And Lastly Ground
-		if (attacker.hasGround())
-			if (inRangeOfDefenderSiegeAttackerGround(tier))
-				return TYPE_GROUND;
-	}
-
 
 	void attackPhaseAttackerRanged() {
 		if (!attacker.hasRanged())

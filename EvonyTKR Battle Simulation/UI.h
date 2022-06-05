@@ -2,8 +2,11 @@
 
 #include "Players.h"
 
-class Interface {
+class UI {
 private:
+	// Options
+	const bool showRoundLosses = true;
+	const bool showRoundDamage = true;
 
 public:
 	static void attackerDefaults() {
@@ -35,4 +38,4 @@ public:
 		defender.buffs().flat().setRanged(0, 0, 0);
 		defender.buffs().flat().setSiege(0, 0, 0);
 	}
-} interface;
+} ui;

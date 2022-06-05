@@ -1,11 +1,8 @@
 #pragma once
 
-#include "Buffs.h"
-#include "Debuffs.h"
-#include "Troops.h"
-
-static Player attacker;
-static Player defender;
+//#include "Buffs.h"
+//#include "Debuffs.h"
+//#include "Troops.h"
 
 class Player {
 private:
@@ -24,15 +21,53 @@ public:
 		return DEBUFFS;
 	}
 
-
-
-	static const bool isAttacker(PlayerType side) {
-		if (side == PLAYER_ATTACKER)
-			return true;
-		return false;
+	Troops& troops() {
+		return TROOPS;
 	}
 
-	static const bool isDefender(PlayerType side) {
-		return !isAttacker(side);
+	const bool hasMounted() {
+		return troops().hasMounted();
+	}
+
+	const bool hasGround() {
+		return troops().hasGround();
+	}
+
+	const bool hasRanged() {
+		return troops().hasRanged();
+	}
+
+	const bool hasSiege() {
+		return troops().hasSiege();
+	}
+
+	void updateTroopStats() {
+		TROOPS.updateTypeTierStats();
+	}
+
+	void tick() {
+		siegeTick();
+		rangedTick();
+		groundTick();
+		mountedTick();
+	}
+
+	void siegeTick() {
+
+	}
+
+	void rangedTick() {
+
+	}
+
+	void groundTick() {
+
+	}
+
+	void mountedTick() {
+
 	}
 };
+
+static Player attacker;
+static Player defender;

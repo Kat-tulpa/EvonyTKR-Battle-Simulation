@@ -1,11 +1,13 @@
 #pragma once
 
 class Damage {
+public:
 private:
 	class Phase {
 	private:
 		class Pending {
-
+		public:
+		private:
 		};
 	};
 };

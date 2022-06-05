@@ -1,6 +1,7 @@
 #pragma once
 
-#include "TypeTier.h"
+#include "Defs.h"
+#include "Stats.h"
 
 class InitialStats {
 private:

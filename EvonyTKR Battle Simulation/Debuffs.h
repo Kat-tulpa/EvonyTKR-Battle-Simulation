@@ -1,10 +1,5 @@
 #pragma once
 
-#include "Type.h"
-#include "Attribute.h"
-#include "Players.h"
-#include "Buffs.h"
-
 #include <algorithm>
 
 class Debuffs {

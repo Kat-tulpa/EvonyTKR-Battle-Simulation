@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Attribute.h"
+#include "Defs.h"
 
 class Stats {
 private:

@@ -1,9 +1,5 @@
 #pragma once
 
-#include "Players.h"
-#include "Type.h"
-#include "Position.h"
-
 class MovementPhase {
 private:
 

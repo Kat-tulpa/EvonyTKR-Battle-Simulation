@@ -1,75 +1,56 @@
 #pragma once
 
 #include "ScalarValues.h"
-#include "FlatBuffs.h"
-#include "Players.h"
+#include "Defs.h"
 
 class Buffs {
 private:
-	ScalarValues scalarBuffs;
-	FlatBuffs flatBuffs;
+	ScalarValues SCALAR;
+	FlatBuffs FLAT;
+
+	class FlatBuffs {
+		private:
+			Attribute flats[TYPE_COUNT][ATTRIBUTE_COUNT] = { 0 };
+
+		public:
+			// Getters
+			const Attribute get(Type type, Attribute attribute) {
+				return flats[type][attribute];
+			}
+
+			// Setters
+			void set(const Type type, const Attribute atk,
+				const Attribute def, const Attribute hp) {
+				flats[type][ATTRIBUTE_ATTACK] = atk;
+				flats[type][ATTRIBUTE_DEFENSE] = def;
+				flats[type][ATTRIBUTE_HP] = hp;
+			}
+
+			void set(Type type, ATTRIBUTE attribute, Attribute val) {
+				flats[type][attribute] = val;
+			}
+
+			void setATK(Type type, Attribute atk) {
+				flats[type][ATTRIBUTE_ATTACK] = atk;
+			}
+
+			void setDEF(Type type, Attribute def) {
+				flats[type][ATTRIBUTE_DEFENSE] = def;
+			}
+
+			void setHP(Type type, Attribute hp) {
+				flats[type][ATTRIBUTE_HP] = hp;
+			}
+		};
 
 public:
-	// Init
-	void init(ScalarValues buffs, FlatBuffs flats) {
-		scalarBuffs = buffs;
-		flatBuffs = flats;
-	}
-
 	// Getters
-	ScalarValues scalar() {
-		return scalarBuffs;
+	ScalarValues& scalar() {
+		return SCALAR;
 	}
 
-	FlatBuffs flat() {
-		return flatBuffs;
-	}
-
-	const Attribute getFlat(const Type type, const ATTRIBUTE attribute) {
-		return flatBuffs.get(type, attribute);
-	}
-
-	const double getScalar(const Type type, const ATTRIBUTE attribute) {
-		return scalarBuffs.get(type, attribute);
-	}
-
-	// Setters
-	void setScalar(const Type type, const double atk, 
-		const double def, const double hp) {
-		scalarBuffs.set(type, atk, def, hp);
-	}
-
-	void setScalar(const Type type, const ATTRIBUTE attribute, const double val) {
-		scalarBuffs.set(type, attribute, val);
-	}
-
-	void setScalarATK(const Type type, const double atk) {
-		scalarBuffs.set(type, ATTRIBUTE_ATTACK, atk);
-	}
-
-	void setScalarDEF(const Type type, const double def) {
-		scalarBuffs.set(type, ATTRIBUTE_DEFENSE, def);
-	}
-
-	void setScalarHP(const Type type, const double hp) {
-		scalarBuffs.set(type, ATTRIBUTE_HP, hp);
-	}
-
-	void setFlat(const Type type, const Attribute atk, 
-		const Attribute def, const Attribute hp) {
-		flatBuffs.set(type, atk, def, hp);
-	}
-
-	void setFlatATK(const Type type, const Attribute atk) {
-		flatBuffs.set(type, ATTRIBUTE_ATTACK, atk);
-	}
-
-	void setFlatDEF(const Type type, const Attribute def) {
-		flatBuffs.set(type, ATTRIBUTE_DEFENSE, def);
-	}
-
-	void setFlatHP(const Type type, const Attribute hp) {
-		flatBuffs.set(type, ATTRIBUTE_HP, hp);
+	FlatBuffs& flat() {
+		return FLAT;
 	}
 
 	// Flat Buffs

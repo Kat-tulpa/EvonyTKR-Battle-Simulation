@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Distance.h"
+#include "Defs.h"
+#include "Players.h"
 #include "InRange.h"
 #include "AttackPhase.h"
 #include "MovementPhase.h"
@@ -14,21 +15,29 @@ private:
 	Distance speeds[2][TYPE_COUNT];
 	Count roundCount = 0;
 
-// Options
-bool showRoundLosses = true;
-bool showRoundDamage = true;
-
 public:
 
 	// Init
 	void init() {
+		initalizePlayers();
+		playersApplyBuffsToThemselves();
+		playersApplyDebuffsToEachOther();
+		setupBattle();
+	}
+
+	void initalizePlayers() {
 		attacker.init(PLAYER_ATTACKER);
 		defender.init(PLAYER_DEFENDER);
-		attacker.applyDebuffs(defender.getDebuffs());
-		defender.applyDebuffs(attacker.getDebuffs());
-		attacker.applyBuffs();
-		defender.applyBuffs();
-		setupBattle();
+	}
+
+	void playersApplyBuffsToThemselves() {
+		attacker.buffs().apply(attacker);
+		defender.buffs().apply(defender);
+	}
+
+	void playersApplyDebuffsToEachOther() {
+		attacker.debuffs().apply(defender);
+		defender.debuffs().apply(attacker);
 	}
 
 	void setupBattle() {
@@ -59,22 +68,17 @@ public:
 
 	void battleLoop() {
 		while (attacker.hasTroops() && defender.hasTroops()) {
-			movementPhase();
-			attackPhase();
-			lossesPhase();
-			printCounts();
+			movementPhase.tick();
+			attackPhase.tick();
+			lossesPhase.tick();
+			ui.printCounts();
 			roundCount++;
 		}
 	}
 
-	void updateStats() {
-		for (unsigned int type = 0; type < TYPE_COUNT; type++)
-			for (unsigned int tier = 0; tier < TIER_COUNT; tier++) {
-				const Type castedType = Type(type);
-				attacker.updateStats(castedType, tier);
-				defender.updateStats(castedType, tier);
-			}
-		attacker.applyBuffs();
-		defender.applyBuffs();
+	void updatePlayersTroopStats() {
+		attacker.updateTroopStats();
+		defender.updateTroopStats();
 	}
+
 } battlefield;

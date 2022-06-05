@@ -1,82 +1,31 @@
 #pragma once
 
+#include "Defs.h"
 #include "Players.h"
-#include "Distance.h"
 
 class Position {
+
 private:
-	static Distance positions[2][TYPE_COUNT - 1];
-	static Distance positionsSiege[2][TIER_COUNT];
+	static Distance positions[PLAYER_COUNT][TYPE_COUNT - 1];
+	static Distance positionsSiege[PLAYER_COUNT][TIER_COUNT];
 
 public:
 	
-	// Getters
-	static const Distance getPosition(const Player side, const Type type) {
-		return positions[side][type];
-	}
+	// Get Positions
+	static const Distance getPosition(const Player, const Type);
+	static const Distance getPositionAttacker(const Type);
+	static const Distance getPositionDefender(const Type);
 
-	static const Distance getPositionAttacker(const Type type) {
-		return positions[PLAYER_ATTACKER][type];
-	}
+	// Get Distance
+	static const Distance distanceToNearestEnemy(const Distance, const Player);
+	static const Distance distanceToDefenderSiege(const Type, const unsigned int);
+	static const Distance distanceToAttackerSiege(const Type, const unsigned int);
+	static const Distance distanceToDefenderType(const Distance, const Type);
+	static const Distance distanceToAttackerType(const Distance, const Type);
 
-	static const Distance getPositionDefender(const Type type) {
-		return positions[PLAYER_DEFENDER][type];
-	}
+	static void positionSet(const Player, const Type, const Distance);
+	static void Add(const Type, const Player, const Distance);
+	static const bool hasCrossed(const Type, const Type);
+	static void setupPositions();
 
-	static const Distance distanceToDefenderType(const Distance startDist, const Type type) {
-		return positions[PLAYER_DEFENDER][type] - startDist;
-	}
-
-	static const Distance distanceToAttackerType(const Distance startPos, const Type type) {
-		return startPos - positions[PLAYER_ATTACKER][type];
-	}
-
-	static const Distance distanceToNearestEnemy(const Distance startPos, const Player player) {
-		if (isAttacker(player))
-			for (unsigned int type = 0; type < TYPE_COUNT; type++)
-				if (defender.hasTroops(Type(type)))
-					if (distanceToDefenderType(startPos, Type(type)) >= 0)
-						return distanceToDefenderType(startPos, Type(type));
-		// If Is Defender
-		for (unsigned int type = 0; type < TYPE_COUNT; type++)
-			if (attacker.hasTroops(Type(type)))
-				if (distanceToAttackerType(startPos, Type(type)) >= 0)
-					return distanceToAttackerType(startPos, Type(type));
-	}
-
-	// Setters
-	static void positionAdd(const Type type, const Player player, const Distance length) {
-		if (player == PLAYER_ATTACKER)
-			positionAddAttacker(type, length);
-		else
-			positionAddDefender(type, length);
-	}
-
-	static void positionAddAttacker(const Type type, const Distance length) {
-		positions[PLAYER_ATTACKER][type] += length;
-	}
-
-	static void positionAddDefender(const Type type, const Distance length) {
-		positions[PLAYER_DEFENDER][type] -= length;
-	}
-
-	static void positionSet(const Player player,
-		const Type type, const Distance pos) {
-		positions[player][type] = pos;
-	}
-
-	static void setupPositions() {
-		Distance attackerStartPos = attacker.farthestRange();
-		Distance defenderStartPos = defender.farthestRange();
-		const Distance battlefieldLength =
-			attackerStartPos + defenderStartPos;
-		attackerStartPos = 0;
-		defenderStartPos = battlefieldLength;
-
-		// Set Starting Positions For Mounted And Ground
-		for (unsigned int type = 0; type < TYPE_RANGED; type++) {
-			positionSet(PLAYER_ATTACKER, Type(type), attackerStartPos);
-			positionSet(PLAYER_DEFENDER, Type(type), defenderStartPos);
-		}
-	}
 } position;

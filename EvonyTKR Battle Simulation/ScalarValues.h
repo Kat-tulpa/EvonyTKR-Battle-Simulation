@@ -1,8 +1,5 @@
 #pragma once
 
-#include "Type.h"
-#include "Attribute.h"
-
 class ScalarValues {
 private:
 	double values[TYPE_COUNT][ATTRIBUTE_COUNT];
