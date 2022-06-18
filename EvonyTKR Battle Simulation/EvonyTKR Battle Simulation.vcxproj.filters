@@ -13,78 +13,87 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Archive">
+      <UniqueIdentifier>{d89a1c49-3e92-4186-99b4-17c3346c6837}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Archive\mainn.cpp">
+      <Filter>Source Files\Archive</Filter>
+    </ClCompile>
+    <ClCompile Include="Archive\Position.cpp">
+      <Filter>Source Files\Archive</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Position.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InitialStats.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\AttackPhase.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Buffs.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Battlefield.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Stats.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Buffs.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Players.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Counts.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Debuffs.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Damage.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Battlefield.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Debuffs.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Counts.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Defs.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="ScalarValues.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\FlatBuffs.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="SkillBook.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\InitialStats.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="InRange.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\InRange.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\LossesPending.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="MovementPhase.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\LossesPhase.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="AttackPhase.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\MovementPhase.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Position.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Players.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="LossesPhase.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Position.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Damage.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\ScalarValues.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="LossesPending.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\SkillBook.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Troops.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Stats.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Defs.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Target.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Targeting.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Targeting.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
-    <ClInclude Include="Target.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Archive\Troops.h">
+      <Filter>Source Files\Archive</Filter>
+    </ClInclude>
+    <ClInclude Include="Archive\UI.h">
+      <Filter>Source Files\Archive</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

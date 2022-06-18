@@ -139,31 +139,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Archive\mainn.cpp" />
+    <ClCompile Include="Archive\Position.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Position.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Target.h" />
-    <ClInclude Include="AttackPhase.h" />
-    <ClInclude Include="Damage.h" />
-    <ClInclude Include="Defs.h" />
-    <ClInclude Include="InRange.h" />
-    <ClInclude Include="UI.h" />
-    <ClInclude Include="LossesPending.h" />
-    <ClInclude Include="LossesPhase.h" />
-    <ClInclude Include="MovementPhase.h" />
-    <ClInclude Include="Position.h" />
-    <ClInclude Include="ScalarValues.h" />
-    <ClInclude Include="Battlefield.h" />
-    <ClInclude Include="InitialStats.h" />
-    <ClInclude Include="Players.h" />
-    <ClInclude Include="SkillBook.h" />
-    <ClInclude Include="Stats.h" />
-    <ClInclude Include="Buffs.h" />
-    <ClInclude Include="Counts.h" />
-    <ClInclude Include="Debuffs.h" />
-    <ClInclude Include="Targeting.h" />
-    <ClInclude Include="Troops.h" />
+    <ClInclude Include="Archive\FlatBuffs.h" />
+    <ClInclude Include="Archive\Target.h" />
+    <ClInclude Include="Archive\AttackPhase.h" />
+    <ClInclude Include="Archive\Damage.h" />
+    <ClInclude Include="Archive\Defs.h" />
+    <ClInclude Include="Archive\InRange.h" />
+    <ClInclude Include="Archive\UI.h" />
+    <ClInclude Include="Archive\LossesPending.h" />
+    <ClInclude Include="Archive\LossesPhase.h" />
+    <ClInclude Include="Archive\MovementPhase.h" />
+    <ClInclude Include="Archive\Position.h" />
+    <ClInclude Include="Archive\ScalarValues.h" />
+    <ClInclude Include="Archive\Battlefield.h" />
+    <ClInclude Include="Archive\InitialStats.h" />
+    <ClInclude Include="Archive\Players.h" />
+    <ClInclude Include="Archive\SkillBook.h" />
+    <ClInclude Include="Archive\Stats.h" />
+    <ClInclude Include="Archive\Buffs.h" />
+    <ClInclude Include="Archive\Counts.h" />
+    <ClInclude Include="Archive\Debuffs.h" />
+    <ClInclude Include="Archive\Targeting.h" />
+    <ClInclude Include="Archive\Troops.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,6 +15,9 @@ public:
 	static const Distance getPosition(const Player, const Type);
 	static const Distance getPositionAttacker(const Type);
 	static const Distance getPositionDefender(const Type);
+	static const Distance getPosition(const Player, const Type, const unsigned int);
+	static const Distance getPositionAttacker(const Type, const unsigned int);
+	static const Distance getPositionDefender(const Type, const unsigned int);
 
 	// Get Distance
 	static const Distance distanceToNearestEnemy(const Distance, const Player);

@@ -66,12 +66,12 @@
 		const Distance startPos, const Player player) {
 		if (isAttacker(player))
 			for (unsigned int type = 0; type < TYPE_COUNT; type++)
-				if (defender.hasTroops(Type(type)))
+				if (defender.hasType(Type(type)))
 					if (distanceToDefenderType(startPos, Type(type)) >= 0)
 						return distanceToDefenderType(startPos, Type(type));
 		// If Is Defender
 		for (unsigned int type = 0; type < TYPE_COUNT; type++)
-			if (attacker.hasTroops(Type(type)))
+			if (attacker.hasType(Type(type)))
 				if (distanceToAttackerType(startPos, Type(type)) >= 0)
 					return distanceToAttackerType(startPos, Type(type));
 	}
@@ -101,8 +101,8 @@
 
 	static void 
 		Position::setupPositions() {
-		Distance attackerStartPos = attacker.farthestRange();
-		Distance defenderStartPos = defender.farthestRange();
+		Distance attackerStartPos = attacker.longestTroopRange();
+		Distance defenderStartPos = defender.longestTroopRange();
 		const Distance battlefieldLength =
 			attackerStartPos + defenderStartPos;
 		attackerStartPos = 0;
