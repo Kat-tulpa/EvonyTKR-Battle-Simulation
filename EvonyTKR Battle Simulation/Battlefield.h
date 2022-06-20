@@ -6,52 +6,99 @@
 class Battlefield {
 private:
 	LENGTH length;
-	unsigned int roundCount = 0;
 
 public:
 	Battlefield() {
-		setupBattle();
+		setLength(getLongestRange());
 	}
 
-	void resetBattle() {
-		layers[]
+	const LENGTH getLongestRange() {
+		return _max(
+			getLayers(PLAYER_ATTACKER).longestTroopRange(),
+			getLayers(PLAYER_DEFENDER).longestTroopRange());
 	}
 
-	// Getters 
-	const Distance getSpeed(const Player player, const Type type) {
-		return speeds[player][type];
+	void setLength(LENGTH _length) {
+		length = _length;
 	}
 
-	void printCounts() {
-		std::cout << "ATTACKER: " << std::endl;
-		for (unsigned int type = 0; type < TYPE_COUNT; type++) {
-			std::cout << "Type " << type << std::endl;
-			for (unsigned int tier = 0; tier < TIER_COUNT; tier++)
-				std::cout << " Tier: " << tier
-				<< attacker.getCount(Type(type), tier) << std::endl;
-		}
-		std::cout << std::endl << "DEFENDER: " << std::endl;
-		for (unsigned int type = 0; type < TYPE_COUNT; type++) {
-			std::cout << "Type " << type << std::endl;
-			for (unsigned int tier = 0; tier < TIER_COUNT; tier++)
-				std::cout << " Tier: " << tier
-				<< defender.getCount(Type(type), tier) << std::endl;
-		}
+	const LENGTH getLength() {
+		return length;
+	}
+
+	void reset() {
+		setLength(getLongestRange());
+		roundCount = 0;
 	}
 
 	void battleLoop() {
-		while (attacker.hasTroops() && defender.hasTroops()) {
-			movementPhase.tick();
-			attackPhase.tick();
-			lossesPhase.tick();
-			ui.printCounts();
+		while (bothPlayersHaveTroops()) {
+			movementPhase();
+			attackPhase();
 			roundCount++;
 		}
 	}
 
-	void updatePlayersTroopStats() {
-		attacker.updateTroopStats();
-		defender.updateTroopStats();
+	void printCounts() {
+		std::cout << "Round : " << roundCount << std::endl;
+		layers[PLAYER_ATTACKER].printCounts();
+		layers[PLAYER_DEFENDER].printCounts();
 	}
 
+	bool bothPlayersHaveTroops() {
+		return attackerHasTroops() && defenderHasTroops();
+	}
+
+	bool attackerHasTroops() {
+		return layers[PLAYER_ATTACKER].hasTroops();
+	}
+
+	bool defenderHasTroops() {
+		return layers[PLAYER_DEFENDER].hasTroops();
+	}
+
+	//defender == ground, mounted
+	//attacker == ground, mounted
+	//defender mounted, attacker mounted, defender ground, attacker ground
+
+	// Movement Phase
+	void movementPhase() {
+		for (TYPE type = TYPE_MOUNTED; type < TYPE_COUNT; type++)
+			for (PLAYER_ROLE player = PLAYER_DEFENDER; player > PLAYER_ATTACKER; player--)
+					if(getLayers(player).hasLayer(type))
+						get
+					
+
+
+
+			if (hasType[)
+				if ()
+					for (TYPE type = TYPE_MOUNTED; type < TYPE_COUNT; type++) {
+						if (attacker.hasTroops(type))
+							if (defender.hasTroops(castedType))
+								if (getSpeed(PLAYER_ATTACKER, castedType) >
+									getSpeed(PLAYER_DEFENDER, castedType))
+									tickAttackerDefender(castedType);
+								else
+									tickDefenderAttacker(castedType);
+							else
+								tickAttacker(castedType);
+						else
+							if (defender.hasTroops(castedType))
+								tickDefender(castedType);
+					}
+	}
+
+	static void move(PLAYER_ROLE player, Layer& layer) {
+		if (layer.enemyInRange())
+			return;
+		layer.move(_min(layer.distanceToNearestEnemy()
+			- layer.getRange(), layer.getSpeed()));
+	}
+
+	// Attack Phase
+
 };
+
+static Battlefield battlefield = Battlefield();
+static unsigned int roundCount = 0;

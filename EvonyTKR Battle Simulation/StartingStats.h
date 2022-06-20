@@ -129,4 +129,4 @@ public:
 	
 };
 
-static StartingStats startingStats();
+static StartingStats startingStats = StartingStats();

@@ -28,4 +28,16 @@ struct SingleUnit {
 	void setHP(ATTRIBUTE hp) {
 		HP = hp;
 	}
+
+	void addATK(ATTRIBUTE atk) {
+		setATK(getATK() + atk);
+	}
+
+	void addDEF(ATTRIBUTE def) {
+		setDEF(getDEF() + def);
+	}
+
+	void addHP(ATTRIBUTE hp) {
+		setHP(getHP() + hp);
+	}
 };

@@ -99,3 +99,6 @@ struct ScalarBuffs {
 	}
 
 };
+
+static FlatBuffs flatBuffs[PLAYER_COUNT];
+static ScalarBuffs scalarBuffs[PLAYER_COUNT];
